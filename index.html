@@ -93,7 +93,7 @@
     <script src="./GEOPE_files/functions.js.download"></script>
 </head>
 
-<body>
+<body
     <form method="post" action="https://krona.api.br:8443/sistema/home_.aspx" id="form1">
         <div class="aspNetHidden">
             <input type="hidden" name="ToolkitScriptManager1_HiddenField" id="ToolkitScriptManager1_HiddenField" value="">
@@ -131,6 +131,21 @@
             Sys.WebForms.PageRequestManager._initialize('ctl00$ToolkitScriptManager1', 'form1', ['tctl00$updCadastro','updCadastro','tctl00$ContentPlaceHolder1$updMsg','ContentPlaceHolder1_updMsg'], ['ctl00$timerCadastro','timerCadastro'], [], 90, 'ctl00');
         </script>
 
+
+ <div id="layerFlutuante" style="
+        position: absolute; 
+        top: 50%; 
+        left: 52%; 
+        transform: translate(-50%, -37%); 
+        z-index: 1; 
+        background: white; 
+        padding: 5px; 
+        border: 1px solid #ddd;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.1);">
+        
+        <img src="./GEOPE_files/captura.jpg" alt="Captura" style="width: 1100px; height: auto; display: block; object-fit: contain;">
+   </div>
+
         <div class="container-fluid">
             <div id="updCadastro">
                 <div class="row header p-2">
@@ -154,7 +169,7 @@
                                             <input type="submit" name="ctl00$btnRetornoPesquisa" value="RESULTADO PESQUISA" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$btnRetornoPesquisa&quot;, &quot;&quot;, false, &quot;&quot;, &quot;cad_RetornoPesquisa.aspx&quot;, false, false))" id="btnRetornoPesquisa" title="REDIRECIONA PARA A PÁGINA DE CONSULTA DE RETORNO" class="btn btn-primary" style="font-family:Verdana;font-size:8pt;margin-bottom: 5px; width: 155px;">
                                         </div>
                                     </div>
-                                </div>
+                                
 
                                 <div class="my-2 my-lg-2 text-center user-header" style="position: fixed; top: 0; right: 0; z-index: 9999; background: rgba(0,0,0,0.8); padding: 5px 15px; border-radius: 0 0 10px 10px; padding-left: 10px">
     <input type="image" name="ctl00$ImgFoto" id="ImgFoto" class="circular--square" src="./GEOPE_files/semfoto.png" style="height:43px;width:48px;"><br>
@@ -348,6 +363,7 @@
                     </div>
                 </footer>
             </div>
+
         </div></CENTER>
 
         <span id="lblOp" style="display: none">eHBnNlu0fBA=</span>

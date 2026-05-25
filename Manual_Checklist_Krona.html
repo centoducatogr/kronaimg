@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual de Treinamento — Checklist Automático WhatsApp · Krona</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1D9E75;
+    --green-light: #E1F5EE;
+    --green-mid: #9FE1CB;
+    --green-dark: #579055;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --red: #A32D2D;
+    --red-light: #FCEBEB;
+    --gray: #444441;
+    --gray-light: #F1EFE8;
+    --gray-mid: #B4B2A9;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --text: #2C2C2A;
+    --text-muted: #5F5E5A;
+    --border: #D3D1C7;
+    --bg: #FAFAF8;
+    --white: #ffffff;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* CAPA */
+  .cover {
+    background: var(--green-dark);
+    color: white;
+    padding: 80px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right:0px;
+    width: 400px;
+    height: 400px;
+
+    background-image: url('https://centoducatogr.github.io/kronaimg/img/logo_oficial_transparente.png');
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    ;
+  }
+  .cover::aftser {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 200px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(29,158,117,0.3);
+  }
+  .cover-badge {
+    display: inline-block;
+    background: rgba(159,225,203,0.2);
+    border: 1px solid rgba(159,225,203,0.4);
+    color: var(--green-mid);
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+  .cover h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover h1 span { color: var(--green-mid); }
+  .cover p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+    max-width: 560px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    margin-top: 48px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .cover-meta-item .label { font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; }
+  .cover-meta-item .val { font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 600; color: var(--green-mid); }
+
+  /* CONTEÚDO */
+  .container { max-width: 860px; margin: 0 auto; padding: 60px 40px; }
+
+  /* ÍNDICE */
+  .toc {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    margin-bottom: 60px;
+  }
+  .toc-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+  .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+  .toc-list li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 15px;
+    transition: background 0.15s;
+  }
+  .toc-list li a:hover { background: var(--gray-light); }
+  .toc-num {
+    width: 28px; height: 28px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    border-radius: 50%;
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .toc-list li a .arrow { margin-left: auto; color: var(--gray-mid); font-size: 14px; }
+
+  /* SEÇÃO */
+  .section { margin-bottom: 72px; }
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--green-light);
+  }
+  .section-icon {
+    width: 52px; height: 52px;
+    background: var(--green);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 22px;
+  }
+  .section-meta { flex: 1; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .section-desc { font-size: 15px; color: var(--text-muted); margin-top: 6px; }
+
+  /* ALERTA */
+  .alert {
+    display: flex;
+    gap: 14px;
+    padding: 18px 20px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 24px;
+    align-items: flex-start;
+  }
+  .alert-warn { background: var(--amber-light); border-left: 4px solid var(--amber); }
+  .alert-danger { background: var(--red-light); border-left: 4px solid var(--red); }
+  .alert-info { background: var(--blue-light); border-left: 4px solid var(--blue); }
+  .alert-success { background: var(--green-light); border-left: 4px solid var(--green); }
+  .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .alert-body { flex: 1; }
+  .alert-body strong {
+    display: block;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .alert-warn strong { color: #633806; }
+  .alert-danger strong { color: var(--red); }
+  .alert-info strong { color: var(--blue); }
+  .alert-success strong { color: var(--green-dark); }
+  .alert-body p { font-size: 14px; color: var(--text); margin: 0; line-height: 1.6; }
+
+  /* PASSOS DO CHECKLIST */
+  .steps { display: flex; flex-direction: column; gap: 20px; }
+  .step {
+    display: flex;
+    gap: 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    position: relative;
+    transition: box-shadow 0.15s;
+  }
+  .step:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  .step-number {
+    width: 40px; height: 40px;
+    background: var(--green);
+    color: white;
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-content { flex: 1; }
+  .step-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .step-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; }
+  .step-tag {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-top: 10px;
+  }
+  .step-tag.warn { background: var(--amber-light); color: #633806; }
+
+  /* CHAT SIMULADO */
+  .chat-container {
+    background: #ECE5DD;
+    border-radius: var(--radius);
+    padding: 20px;
+    margin: 24px 0;
+  }
+  .chat-header {
+    background: #075E54;
+    color: white;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    padding: 12px 16px;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: -20px -20px 16px -20px;
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .chat-avatar {
+    width: 34px; height: 34px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .chat-bubble {
+    max-width: 82%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .chat-received {
+    background: white;
+    align-self: flex-start;
+    border-radius: 0 8px 8px 8px;
+    color: #1a1a1a;
+  }
+  .chat-sent {
+    background: #DCF8C6;
+    align-self: flex-end;
+    margin-left: auto;
+    border-radius: 8px 0 8px 8px;
+    color: #1a1a1a;
+  }
+  .chat-msgs { display: flex; flex-direction: column; gap: 0; }
+  .chat-time { font-size: 11px; color: #888; margin-left: 8px; }
+  .chat-bold { font-weight: 600; }
+  .chat-italic { font-style: italic; color: #555; font-size: 13px; display: block; margin-top: 2px; }
+
+  /* RESULTADO */
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .result-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .result-item.ok { background: var(--green-light); color: var(--green-dark); }
+  .result-item.fail { background: var(--red-light); color: var(--red); }
+  .result-icon { font-size: 18px; flex-shrink: 0; }
+
+  /* MENU FINAL */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .menu-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    text-align: center;
+  }
+  .menu-num {
+    width: 32px; height: 32px;
+    background: var(--green);
+    color: white;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 10px;
+  }
+  .menu-label {
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .menu-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* PRÉ-REQUISITOS */
+  .prereq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .prereq-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+  }
+  .prereq-emoji { font-size: 28px; margin-bottom: 10px; }
+  .prereq-card h4 {
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .prereq-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* DIVIDER */
+  hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+  /* FOOTER */
+  footer {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 13px;
+  }
+  footer strong { color: var(--green-mid); }
+
+  /* NUMERO CONTATO */
+  .contact-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--white);
+    border: 2px solid var(--green-mid);
+    border-radius: var(--radius);
+    padding: 20px 28px;
+    margin: 24px 0;
+  }
+  .contact-icon { font-size: 36px; }
+  .contact-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+  .contact-number {
+    font-family: 'Sora', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--green-dark);
+    letter-spacing: 1px;
+  }
+
+  /* LINHA DO TEMPO PASSOS */
+  .timeline { position: relative; padding-left: 40px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 13px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: var(--green-light);
+  }
+  .tl-item { position: relative; margin-bottom: 28px; }
+  .tl-dot {
+    position: absolute;
+    left: -40px; top: 6px;
+    width: 28px; height: 28px;
+    background: var(--green);
+    border: 3px solid var(--bg);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    z-index: 1;
+  }
+  .tl-head {
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .tl-body { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+  @media print {
+    .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="cover">
+  <div class="cover-badge">GRUPO KRONA - guia completo</div>
+  <h1>Checklist Automático<br>via WhatsApp</h1>
+ 
+</div>
+
+<div class="container">
+
+  <!-- ÍNDICE -->
+  <div class="toc">
+    <p class="toc-title">Índice</p>
+    <ul class="toc-list">
+      <li><a href="#intro">
+        <span class="toc-num">0</span>
+        Introdução e pré-requisitos
+        <span class="arrow">→</span>
+      </a></li>
+      <li><a href="#acesso">
+        <span class="toc-num">1</span>
+        Como acessar o chatbot
+        <span class="arrow">→</span>
+      </a></li>
+      <li><a href="#identificacao">
+        <span class="toc-num">2</span>
+        Identificação do condutor
+        <span class="arrow">→</span>
+      </a></li>
+      <li><a href="#empresa">
+        <span class="toc-num">3</span>
+        Seleção de empresa e operação
+        <span class="arrow">→</span>
+      </a></li>
+      <li><a href="#veiculo">
+        <span class="toc-num">4</span>
+        Informações do veículo
+        <span class="arrow">→</span>
+      </a></li>
+      <li><a href="#testes">
+        <span class="toc-num">5</span>
+        Execução dos 9 passos de teste
+        <span class="arrow">→</span>
+      </a></li>
+      <li><a href="#resultado">
+        <span class="toc-num">6</span>
+        Resultados e menu final
+        <span class="arrow">→</span>
+      </a></li>
+      <li><a href="#rejeicao">
+        <span class="toc-num">7</span>
+        O que fazer se reprovar um sensor
+        <span class="arrow">→</span>
+      </a></li>
+    </ul>
+  </div>
+
+  <!-- SEÇÃO 0: INTRODUÇÃO -->
+  <div class="section" id="intro">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-meta">
+        <p class="section-label">Introdução</p>
+        <h2 class="section-title">O que é e quem pode fazer?</h2>
+        <p class="section-desc">Entenda o checklist antes de começar</p>
+      </div>
+    </div>
+
+    <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 24px;">O <strong style="color:var(--text)">Checklist Automático</strong> da Krona é um processo de verificação dos sensores e atuadores do veículo realizado diretamente pelo WhatsApp, sem necessidade de agendamento ou contato com a equipe Krona. Qualquer pessoa autorizada pode realizá-lo.</p>
+
+    <div class="prereq-grid">
+      <div class="prereq-card">
+        <div class="prereq-emoji">🚗</div>
+        <h4>Condutor</h4>
+        <p>O motorista principal pode realizar o teste estando ao lado do veículo.</p>
+      </div>
+      <div class="prereq-card">
+        <div class="prereq-emoji">📦</div>
+        <h4>Transportador</h4>
+        <p>O responsável pelo transporte também está autorizado a executar.</p>
+      </div>
+      <div class="prereq-card">
+        <div class="prereq-emoji">🧑‍🤝‍🧑</div>
+        <h4>Ajudante</h4>
+        <p>Qualquer auxiliar que esteja ao lado do veículo pode conduzir o teste.</p>
+      </div>
+      <div class="prereq-card">
+        <div class="prereq-emoji">📍</div>
+        <h4>Presença obrigatória</h4>
+        <p>É necessário estar fisicamente ao lado do veículo durante todo o processo.</p>
+      </div>
+    </div>
+
+    <div class="alert alert-danger">
+      <div class="alert-icon">🚨</div>
+      <div class="alert-body">
+        <strong>Dois pré-requisitos obrigatórios — sem eles, o teste não funciona</strong>
+        <p><strong>1. O condutor precisa estar cadastrado no sistema Krona.</strong><br>
+        <strong>2. A tecnologia do veículo precisa estar espelhada (comunicando) com a Krona.</strong><br>
+        Se o veículo não estiver espelhado, consulte o documento: <em><a href="https://docs.google.com/presentation/d/15J8_tlbzebe3Q4M5DvMqvV9M-g7wyDRG/edit?usp=drive_link&ouid=106806561584033821238&rtpof=true&sd=true" target="_blank">Processos de Espelhamentos de Sinal - Krona.pptx</a>
+</em></p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- SEÇÃO 1: ACESSO -->
+  <div class="section" id="acesso">
+    <div class="section-header">
+      <div class="section-icon">📱</div>
+      <div class="section-meta">
+        <p class="section-label">Passo 1</p>
+        <h2 class="section-title">Como acessar o chatbot</h2>
+        <p class="section-desc">Iniciando a conversa no WhatsApp</p>
+      </div>
+    </div>
+
+    <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 20px;">Abra o WhatsApp no seu celular e envie uma mensagem para o número oficial do Chatbot Checklist da Krona:</p>
+
+    <div class="contact-box">
+      <div class="contact-icon">💬</div>
+      <div>
+        <p class="contact-label">Chatbot Checklist — Krona</p>
+        <p class="contact-number">+55 11 91707-9533</p>
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      <div class="alert-icon">💡</div>
+      <div class="alert-body">
+        <strong>Como iniciar</strong>
+        <p>Envie qualquer mensagem de cumprimento — como <em>"Oi"</em> ou <em>"Olá"</em> — e aguarde. O chatbot responderá automaticamente com a saudação:<br><em>"Olá, seja bem-vindo ao CHECKLIST da Krona."</em></p>
+      </div>
+    </div>
+
+    <div class="chat-container">
+      <div class="chat-header">
+        <div class="chat-avatar">🤖</div>
+        <div>
+          <div>Chatbot Checklist - Krona</div>
+          <div style="font-size: 11px; opacity: 0.7;">online</div>
+        </div>
+      </div>
+      <div class="chat-msgs">
+        <div class="chat-bubble chat-sent">Oi <span class="chat-time">16:43</span></div>
+        <div class="chat-bubble chat-received">
+          <span class="chat-bold">Olá, seja bem-vindo ao CHECKLIST da Krona.</span>
+          <span class="chat-time">16:43</span>
+        </div>
+        <div class="chat-bubble chat-received">
+          Digite o número do seu <span class="chat-bold">CPF</span>, use somente números.
+          <span class="chat-italic">Exemplo: 12332145656</span>
+          <span class="chat-time">16:43</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- SEÇÃO 2: IDENTIFICAÇÃO -->
+  <div class="section" id="identificacao">
+    <div class="section-header">
+      <div class="section-icon">🪪</div>
+      <div class="section-meta">
+        <p class="section-label">Passo 2</p>
+        <h2 class="section-title">Identificação do condutor</h2>
+        <p class="section-desc">Informando CPF e telefone</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <p class="step-title">Digite apenas os números do CPF</p>
+          <p class="step-desc">Quando o chatbot solicitar, informe seu CPF usando somente os 11 dígitos numéricos, sem pontos ou traços.<br><strong>Exemplo:</strong> <code style="background:var(--gray-light);padding:2px 6px;border-radius:4px;">12332145656</code></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <p class="step-title">Digite apenas os números do telefone</p>
+          <p class="step-desc">Em seguida, o chatbot pedirá seu número de telefone. Informe somente os dígitos, com DDD, sem espaços ou símbolos.<br><strong>Exemplo:</strong> <code style="background:var(--gray-light);padding:2px 6px;border-radius:4px;">11977123456</code></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-warn">
+      <div class="alert-icon">⚠️</div>
+      <div class="alert-body">
+        <strong>Atenção com os dados</strong>
+        <p>O sistema vai cruzar o CPF informado com o cadastro. Se o CPF não estiver cadastrado no sistema Krona, o processo não continuará. Contate seu responsável para regularizar o cadastro.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- SEÇÃO 3: EMPRESA E OPERAÇÃO -->
+  <div class="section" id="empresa">
+    <div class="section-header">
+      <div class="section-icon">🏢</div>
+      <div class="section-meta">
+        <p class="section-label">Passo 3 e 4</p>
+        <h2 class="section-title">Seleção de empresa e operação</h2>
+        <p class="section-desc">Identificando sua filial e operação</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <p class="step-title">Escolha o código da sua empresa</p>
+          <p class="step-desc">Com base no CPF informado, o sistema encontrará as empresas vinculadas ao condutor e exibirá uma lista com códigos. Localize sua filial na lista e <strong>digite apenas o número do código correspondente</strong>.</p>
+          <span class="step-tag">Exemplo: 60491</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <p class="step-title">Escolha o código da operação</p>
+          <p class="step-desc">Após selecionar a empresa, o sistema exibirá as <strong>operações disponíveis</strong> para aquela filial. Localize a operação correta e <strong>digite o código correspondente</strong>.</p>
+          <span class="step-tag">Exemplo: 60491 — TRANSPORTE RODOVIARIO 1500 LTDA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-container">
+      <div class="chat-header">
+        <div class="chat-avatar">🤖</div>
+        <div><div>Chatbot Checklist - Krona</div></div>
+      </div>
+      <div class="chat-msgs">
+        <div class="chat-bubble chat-received">
+          <span class="chat-bold">CÓDIGO: 60537</span> - 1500 FILIAL CAMAÇARI<br>
+          <span class="chat-bold">CÓDIGO: 60962</span> - 1500 FILIAL CAMPO NOVO DO PARECIS (AGRO)<br>
+          <span class="chat-bold">CÓDIGO: 60491</span> - 1500 FILIAL JANDIRA<br>
+          <span style="color:#888;font-size:12px;">... e outras filiais</span>
+          <br><br>
+          Digite o <span class="chat-bold">Código da Empresa:</span>
+          <span class="chat-time">16:43</span>
+        </div>
+        <div class="chat-bubble chat-sent">60491 <span class="chat-time">16:44</span></div>
+        <div class="chat-bubble chat-received">
+          <span class="chat-bold">OPERAÇÕES DISPONÍVEIS</span><br>
+          CÓDIGO: 60491 - TRANSPORTE RODOVIARIO 1500 LTDA<br><br>
+          Digite o <span class="chat-bold">Código da Operação:</span>
+          <span class="chat-time">16:44</span>
+        </div>
+        <div class="chat-bubble chat-sent">60491 <span class="chat-time">16:44</span></div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- SEÇÃO 4: VEÍCULO -->
+  <div class="section" id="veiculo">
+    <div class="section-header">
+      <div class="section-icon">🚛</div>
+      <div class="section-meta">
+        <p class="section-label">Passo 5</p>
+        <h2 class="section-title">Informações do veículo</h2>
+        <p class="section-desc">Placa do caminhão e da carreta (se houver)</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">5a</div>
+        <div class="step-content">
+          <p class="step-title">Digite a placa do veículo</p>
+          <p class="step-desc">Informe a placa do caminhão/veículo no formato padrão, com letras e números.<br><strong>Exemplo:</strong> <code style="background:var(--gray-light);padding:2px 6px;border-radius:4px;">QCI6I76</code></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">5b</div>
+        <div class="step-content">
+          <p class="step-title">Possui carreta?</p>
+          <p class="step-desc">O chatbot perguntará se o veículo possui carreta acoplada.<br>
+          → Digite <strong>1</strong> para <strong>SIM</strong> (possui carreta)<br>
+          → Digite <strong>2</strong> para <strong>NÃO</strong> (sem carreta)</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">5c</div>
+        <div class="step-content">
+          <p class="step-title">Se sim, informe a placa da carreta</p>
+          <p class="step-desc">Caso tenha respondido SIM, informe a placa da carreta no mesmo formato.<br><strong>Exemplo:</strong> <code style="background:var(--gray-light);padding:2px 6px;border-radius:4px;">TMK4D58</code></p>
+          <span class="step-tag warn">Somente se tiver carreta</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- SEÇÃO 5: TESTES -->
+  <div class="section" id="testes">
+    <div class="section-header">
+      <div class="section-icon">🔬</div>
+      <div class="section-meta">
+        <p class="section-label">Passo 6</p>
+        <h2 class="section-title">Execução dos 9 passos de teste</h2>
+        <p class="section-desc">Siga cada instrução com atenção — o sistema verifica em tempo real</p>
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      <div class="alert-icon">ℹ️</div>
+      <div class="alert-body">
+        <strong>Como funciona a execução</strong>
+        <p>Para cada passo, leia a instrução do chatbot, realize a ação física no veículo e <strong>confirme digitando o número 1</strong>O sistema verifica os sensores automaticamente enquanto você executa as ações.<br> Neste exemplo estamos testando um véiculo com tecnologia <strong>OMNILINK</strong></p>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">1</div>
+        <p class="tl-head">Iniciar Checklist</p>
+        <p class="tl-body">O chatbot enviará "INICIAR CHECKLIST". Confirme digitando <strong>1</strong> para começar.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">2</div>
+        <p class="tl-head">Feche as portas do Baú (lateral e traseira)</p>
+        <p class="tl-body">Certifique-se de que todas as portas do baú estão completamente fechadas e travadas. Confirme digitando <strong>1</strong>.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">3</div>
+        <p class="tl-head">Entre no veículo e feche as portas do motorista e passageiro</p>
+        <p class="tl-body">Entre na cabine, feche completamente as portas do lado do motorista e do passageiro. Confirme digitando <strong>1</strong>.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">4</div>
+        <p class="tl-head">Envie a mensagem predefinida de INÍCIO DE VIAGEM no teclado</p>
+        <p class="tl-body">Acesse o teclado do veículo e envie o comando de início de viagem conforme configurado. Confirme digitando <strong>1</strong>.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">5</div>
+        <p class="tl-head">Pressione o Botão de Pânico por 3 segundos</p>
+        <p class="tl-body">Localize o botão de pânico no veículo e mantenha-o pressionado por <strong>exatamente 3 segundos</strong>. Confirme digitando <strong>1</strong>.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">6</div>
+        <p class="tl-head">Envie o comando de SAÍDA (com senha do motorista) no teclado</p>
+        <p class="tl-body">No teclado do veículo, envie o comando de saída usando a senha pessoal do motorista. O teclado entrará automaticamente em <strong>modo trânsito</strong>. Confirme digitando <strong>1</strong>.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">7</div>
+        <p class="tl-head">Verifique se o veículo está em MODO TRÂNSITO</p>
+        <p class="tl-body">Confirme visualmente se o sistema ativou o modo trânsito. Se não ativou automaticamente, ative manualmente. Confirme digitando <strong>1</strong>.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">8</div>
+        <p class="tl-head">Abra as portas do motorista e passageiro</p>
+        <p class="tl-body">Com o veículo em modo trânsito, abra as portas da cabine. <strong>O veículo deve bloquear e alarmar automaticamente</strong>. Confirme digitando <strong>1</strong>.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">9</div>
+        <p class="tl-head">Desembarque e verifique as portas do baú</p>
+        <p class="tl-body">Saia do veículo e confirme que as <strong>portas do baú estão devidamente TRAVADAS</strong>. Confirme digitando <strong>1</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- SEÇÃO 6: RESULTADO -->
+  <div class="section" id="resultado">
+    <div class="section-header">
+      <div class="section-icon">📊</div>
+      <div class="section-meta">
+        <p class="section-label">Passo 7</p>
+        <h2 class="section-title">Resultados e menu final</h2>
+        <p class="section-desc">Analise o resultado e tome a ação correta</p>
+      </div>
+    </div>
+
+    <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 20px;">Ao final dos 9 passos, o chatbot analisará todos os sensores e atuadores e exibirá o <strong style="color:var(--text)">Resultado Parcial do Checklist</strong>:</p>
+
+    <div class="result-grid">
+      <div class="result-item ok">✅ <span>Sensor Porta Motorista — Aprovado</span></div>
+      <div class="result-item ok">✅ <span>Sensor Porta Carona — Aprovado</span></div>
+      <div class="result-item fail">❌ <span>Sensor Engate — Reprovado</span></div>
+      <div class="result-item ok">✅ <span>Atuador Sirene — Aprovado</span></div>
+      <div class="result-item ok">✅ <span>Atuador Bloqueio — Aprovado</span></div>
+      <div class="result-item ok">✅ <span>Botão de Pânico — Aprovado</span></div>
+    </div>
+
+    <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 20px;">Após o resultado, o chatbot exibirá um menu com 5 opções de ação:</p>
+
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="menu-num">1</div>
+        <p class="menu-label">Refazer Passos do Checklist</p>
+        <p class="menu-sub">Reinicia o teste desde o início</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-num">2</div>
+        <p class="menu-label">Desligar Bloqueio / Sirene</p>
+        <p class="menu-sub">Para desativar o alarme</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-num">3</div>
+        <p class="menu-label">Destravar Baú</p>
+        <p class="menu-sub">Libera o travamento das portas</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-num">4</div>
+        <p class="menu-label">Visualizar Resultado Parcial</p>
+        <p class="menu-sub">Exibe novamente a lista de sensores</p>
+      </div>
+      <div class="menu-item" style="border-color: var(--green); background: var(--green-light);">
+        <div class="menu-num" style="background: var(--green-dark);">5</div>
+        <p class="menu-label" style="color: var(--green-dark);">Finalizar e Ver Resultado</p>
+        <p class="menu-sub" style="color: var(--green);">Conclui o checklist com aprovação</p>
+      </div>
+    </div>
+
+    <div class="alert alert-success">
+      <div class="alert-icon">🎉</div>
+      <div class="alert-body">
+        <strong>Tudo aprovado? Escolha a opção 5!</strong>
+        <p>Se todos os sensores e atuadores estiverem aprovados, basta digitar <strong>5</strong> para finalizar. O chatbot confirmará com a mensagem <em>"CHECKLIST APROVADO — Checklist Encerrado!"</em></p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- SEÇÃO 7: REJEIÇÃO -->
+  <div class="section" id="rejeicao">
+    <div class="section-header">
+      <div class="section-icon">🔧</div>
+      <div class="section-meta">
+        <p class="section-label">Passo 8 (se necessário)</p>
+        <h2 class="section-title">O que fazer se reprovar um sensor</h2>
+        <p class="section-desc">Como corrigir e retestar sem recomeçar do zero</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">A</div>
+        <div class="step-content">
+          <p class="step-title">Identifique o sensor reprovado</p>
+          <p class="step-desc">No resultado parcial, localize qual sensor ou atuador ficou marcado como <strong>Reprovado</strong>. Exemplo: <em>Sensor Engate — Reprovado</em>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">B</div>
+        <div class="step-content">
+          <p class="step-title">Intervenha fisicamente no sensor</p>
+          <p class="step-desc">Realize o ajuste necessário no componente físico. No caso do sensor de engate, por exemplo: desconecte e reconecte o cabo de engate. Tente encaixar novamente com cuidado até verificar que está firme.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">C</div>
+        <div class="step-content">
+          <p class="step-title">Use a opção 4 para retestar</p>
+          <p class="step-desc">Após o ajuste, digite <strong>4</strong> no menu para <strong>Visualizar Resultado Parcial</strong> e solicitar um novo teste do sensor específico. Não é necessário reiniciar todo o checklist.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">D</div>
+        <div class="step-content">
+          <p class="step-title">Se aprovado, finalize com a opção 5</p>
+          <p class="step-desc">Com todos os sensores aprovados após o reteste, escolha a opção <strong>5</strong> para concluir o checklist com sucesso.</p>
+          <span class="step-tag">✅ Checklist Aprovado!</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-warn">
+      <div class="alert-icon">⚠️</div>
+      <div class="alert-body">
+        <strong>Persistindo a reprovação?</strong>
+        <p>Se após várias tentativas o sensor ainda reprovar, anote o nome do sensor com falha e entre em contato com a equipe responsável da sua empresa. Não siga viagem com sensor em falha.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- RESUMO VISUAL -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🗺️</div>
+      <div class="section-meta">
+        <p class="section-label">Resumo</p>
+        <h2 class="section-title">Fluxo completo em um olhar</h2>
+        <p class="section-desc">Visão geral do processo do início ao fim</p>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="display:flex;align-items:stretch;gap:0;">
+        <div style="display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;">
+          <div style="width:28px;height:28px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:13px;font-weight:700;font-family:'Sora',sans-serif;flex-shrink:0;">1</div>
+          <div style="width:2px;flex:1;background:var(--green-mid);margin:4px 0;"></div>
+        </div>
+        <div style="padding:0 0 24px 16px;">
+          <p style="font-weight:600;font-size:15px;color:var(--text);margin-bottom:3px;">Enviar "Oi" para +55 11 91707-9533</p>
+          <p style="font-size:13px;color:var(--text-muted);">Aguardar a saudação do chatbot</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:stretch;gap:0;">
+        <div style="display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;">
+          <div style="width:28px;height:28px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:13px;font-weight:700;font-family:'Sora',sans-serif;flex-shrink:0;">2</div>
+          <div style="width:2px;flex:1;background:var(--green-mid);margin:4px 0;"></div>
+        </div>
+        <div style="padding:0 0 24px 16px;">
+          <p style="font-weight:600;font-size:15px;color:var(--text);margin-bottom:3px;">Informar CPF e telefone</p>
+          <p style="font-size:13px;color:var(--text-muted);">Somente números, sem pontos ou traços</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:stretch;gap:0;">
+        <div style="display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;">
+          <div style="width:28px;height:28px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:13px;font-weight:700;font-family:'Sora',sans-serif;flex-shrink:0;">3</div>
+          <div style="width:2px;flex:1;background:var(--green-mid);margin:4px 0;"></div>
+        </div>
+        <div style="padding:0 0 24px 16px;">
+          <p style="font-weight:600;font-size:15px;color:var(--text);margin-bottom:3px;">Selecionar empresa e operação</p>
+          <p style="font-size:13px;color:var(--text-muted);">Digitar os códigos numéricos correspondentes</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:stretch;gap:0;">
+        <div style="display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;">
+          <div style="width:28px;height:28px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:13px;font-weight:700;font-family:'Sora',sans-serif;flex-shrink:0;">4</div>
+          <div style="width:2px;flex:1;background:var(--green-mid);margin:4px 0;"></div>
+        </div>
+        <div style="padding:0 0 24px 16px;">
+          <p style="font-weight:600;font-size:15px;color:var(--text);margin-bottom:3px;">Informar placa do veículo (e carreta, se houver)</p>
+          <p style="font-size:13px;color:var(--text-muted);">Formato padrão de placa</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:stretch;gap:0;">
+        <div style="display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;">
+          <div style="width:28px;height:28px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:13px;font-weight:700;font-family:'Sora',sans-serif;flex-shrink:0;">5</div>
+          <div style="width:2px;flex:1;background:var(--green-mid);margin:4px 0;"></div>
+        </div>
+        <div style="padding:0 0 24px 16px;">
+          <p style="font-weight:600;font-size:15px;color:var(--text);margin-bottom:3px;">Executar os 9 passos de teste físico</p>
+          <p style="font-size:13px;color:var(--text-muted);">Seguir cada instrução e confirmar com "1"</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:stretch;gap:0;">
+        <div style="display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;">
+          <div style="width:28px;height:28px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:13px;font-weight:700;font-family:'Sora',sans-serif;flex-shrink:0;">6</div>
+          <div style="width:2px;flex:1;background:var(--green-mid);margin:4px 0;"></div>
+        </div>
+        <div style="padding:0 0 24px 16px;">
+          <p style="font-weight:600;font-size:15px;color:var(--text);margin-bottom:3px;">Verificar resultado parcial</p>
+          <p style="font-size:13px;color:var(--text-muted);">Conferir sensores aprovados e reprovados</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:stretch;gap:0;">
+        <div style="display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;">
+          <div style="width:28px;height:28px;background:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:13px;font-weight:700;font-family:'Sora',sans-serif;flex-shrink:0;">✓</div>
+        </div>
+        <div style="padding:0 0 0 16px;">
+          <p style="font-weight:700;font-size:15px;color:var(--green-dark);margin-bottom:3px;">Finalizar com opção 5 → Checklist Aprovado!</p>
+          <p style="font-size:13px;color:var(--text-muted);">Caso haja reprovação, corrigir e retestar antes de finalizar</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Manual de Treinamento — <strong>Checklist Automático via WhatsApp · Krona</strong></p>
+
+</footer>
+
+</body>
+</html>
